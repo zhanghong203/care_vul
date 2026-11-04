@@ -15,6 +15,7 @@ __all__ = [
     "load_pair_examples",
     "RouterPrediction",
     "RouterPredictor",
+    "compute_class_weights",
 ]
 
 
@@ -27,4 +28,8 @@ def __getattr__(name: str):
         from .predictor import RouterPrediction, RouterPredictor
 
         return {"RouterPrediction": RouterPrediction, "RouterPredictor": RouterPredictor}[name]
+    if name == "compute_class_weights":
+        from .objectives import compute_class_weights
+
+        return compute_class_weights
     raise AttributeError(name)

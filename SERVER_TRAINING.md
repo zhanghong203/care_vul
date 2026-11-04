@@ -34,6 +34,10 @@ The local test baseline at packaging time is `29 passed`.
 python scripts/train_router.py \
   --device cuda \
   --progress \
+  --loss weighted_ce \
+  --class-weight-mode sqrt_inverse \
+  --label-smoothing 0.05 \
+  --early-stopping-patience 2 \
   --epochs 5 \
   --batch-size 1 \
   --eval-batch-size 2 \

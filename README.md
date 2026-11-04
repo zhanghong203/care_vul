@@ -152,9 +152,12 @@ the existing PyTorch 2.6 environment before starting a full experiment:
 conda run -n pytorch-2.6-gpu python scripts/train_router.py --smoke-test
 ```
 
-The baseline optimizes weighted binary cross-entropy. Pair-consistency training
-is intentionally excluded so that it can be evaluated later as a separate
-method contribution. The script reports Recall@1/3/5, per-family recall,
+The original baseline optimizes weighted binary cross-entropy. The current
+single-label protocol defaults to square-root class-weighted cross entropy with
+label smoothing and early stopping; `weighted_bce` and `focal_ce` are retained
+as explicit ablations. Pair-consistency training is intentionally excluded so
+that it can be evaluated later as a separate method contribution. The script
+reports Recall@1/3/5, per-family recall,
 vulnerable/fixed recall, pair-union recall, and the stricter rate for which both
 versions of a pair retrieve a correct family.
 

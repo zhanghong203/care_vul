@@ -45,6 +45,14 @@ class RouterPredictor:
         if indices != list(range(len(mapping))):
             raise ValueError("Router label indices must be contiguous and start at zero")
         self.label_names = [name for name, _ in sorted(mapping.items(), key=lambda item: item[1])]
+        checkpoint_config = json.loads(
+            (Path(checkpoint_dir) / "router_config.json").read_text(encoding="utf-8")
+        )
+        self.prediction_activation = (
+            checkpoint_config.get("metadata", {}).get("prediction_activation", "sigmoid")
+        )
+        if self.prediction_activation not in {"sigmoid", "softmax"}:
+            raise ValueError(f"unsupported Router prediction activation: {self.prediction_activation}")
         self.model = CodeBertRouter.load_checkpoint(checkpoint_dir, device=self.device)
         if self.model.num_labels != len(self.label_names):
             raise ValueError("Router checkpoint label count does not match label-index file")
@@ -66,7 +74,11 @@ class RouterPredictor:
             return_tensors="pt",
         )
         encoded = {name: value.to(self.device) for name, value in encoded.items()}
-        probabilities = torch.sigmoid(self.model(**encoded))[0].float().cpu()
+        logits = self.model(**encoded)
+        if self.prediction_activation == "softmax":
+            probabilities = torch.softmax(logits, dim=-1)[0].float().cpu()
+        else:
+            probabilities = torch.sigmoid(logits)[0].float().cpu()
         count = min(top_k, len(self.label_names))
         scores, indices = torch.topk(probabilities, k=count)
         return [

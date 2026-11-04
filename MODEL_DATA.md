@@ -40,6 +40,10 @@ offline loading and does not silently download a replacement checkpoint.
 python scripts/train_router.py \
   --device cuda \
   --mixed-precision fp16 \
+  --loss weighted_ce \
+  --class-weight-mode sqrt_inverse \
+  --label-smoothing 0.05 \
+  --early-stopping-patience 2 \
   --epochs 10 \
   --batch-size 2 \
   --gradient-accumulation-steps 8 \
@@ -48,7 +52,10 @@ python scripts/train_router.py \
   --output-dir outputs/router/codebert_router
 ```
 
-The script selects the checkpoint with the best validation Recall@3 and then
-reports the held-out test metrics. Do not use test metrics for hyperparameter
-selection.
+The default objective is class-weighted cross entropy because the current
+router protocol assigns exactly one coarse family to each function. The legacy
+`weighted_bce` and the optional `focal_ce` remain available as ablations. The
+script selects the checkpoint with the best validation Recall@3, applies early
+stopping, and then reports held-out test metrics. Do not use test metrics for
+hyperparameter selection.
 

@@ -22,8 +22,15 @@ from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 from transformers import AutoTokenizer, get_linear_schedule_with_warmup
 
-from carevul.router import CodeBertRouter, PairJsonlDataset, compute_pos_weight, compute_router_metrics, load_pair_examples
+from carevul.router import CodeBertRouter, PairJsonlDataset, compute_router_metrics, load_pair_examples
 from carevul.router.data import RouterCollator
+from carevul.router.objectives import (
+    SUPPORTED_OBJECTIVES,
+    build_training_loss,
+    evaluation_loss,
+    objective_loss,
+    probabilities_from_logits,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -42,6 +49,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weight-decay", type=float, default=0.01)
     parser.add_argument("--warmup-ratio", type=float, default=0.1)
     parser.add_argument("--dropout", type=float, default=0.1)
+    parser.add_argument("--loss", choices=sorted(SUPPORTED_OBJECTIVES), default="weighted_ce")
+    parser.add_argument("--class-weight-mode", choices=("none", "inverse", "sqrt_inverse"), default="sqrt_inverse")
+    parser.add_argument("--label-smoothing", type=float, default=0.05)
+    parser.add_argument("--focal-gamma", type=float, default=2.0)
+    parser.add_argument(
+        "--early-stopping-patience",
+        type=int,
+        default=2,
+        help="Stop after this many epochs without validation Recall@3 improvement; 0 disables early stopping.",
+    )
     parser.add_argument("--max-length", type=int, default=256)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--num-workers", type=int, default=0)
@@ -116,11 +133,11 @@ def evaluate(
     label_names,
     device,
     mixed_dtype=None,
+    objective="weighted_bce",
     description="Evaluate",
     show_progress=True,
 ) -> tuple[float, dict, np.ndarray]:
     model.eval()
-    loss_fn = nn.BCEWithLogitsLoss()
     losses = []
     all_probabilities = []
     batches = tqdm(
@@ -134,11 +151,10 @@ def evaluate(
         labels = batch["labels"].to(device)
         with torch.autocast(device_type=device.type, dtype=mixed_dtype, enabled=mixed_dtype is not None):
             logits = model(**model_batch(batch, device))
-        losses.append(float(loss_fn(logits, labels).item()))
-        # NumPy has no native torch.bfloat16 dtype. Keep BF16 for model
-        # execution, but convert probabilities to FP32 before exporting them
-        # for metric computation.
-        all_probabilities.append(torch.sigmoid(logits).float().cpu().numpy())
+        losses.append(float(evaluation_loss(objective, logits, labels).item()))
+        # NumPy has no native torch.bfloat16 dtype. Keep mixed precision for
+        # model execution, then export FP32 probabilities for metric code.
+        all_probabilities.append(probabilities_from_logits(objective, logits).float().cpu().numpy())
     probabilities = np.concatenate(all_probabilities, axis=0)
     metrics = compute_router_metrics(probabilities, examples, label_names)
     return float(np.mean(losses)), metrics, probabilities
@@ -159,6 +175,12 @@ def serializable_config(args: argparse.Namespace) -> dict:
 def run(args: argparse.Namespace) -> dict:
     set_seed(args.seed)
     label_names = ordered_labels(args.label_index)
+    if not 0.0 <= args.label_smoothing < 1.0:
+        raise ValueError("label_smoothing must be in [0, 1)")
+    if args.focal_gamma < 0.0:
+        raise ValueError("focal_gamma must be non-negative")
+    if args.early_stopping_patience < 0:
+        raise ValueError("early_stopping_patience must be non-negative")
 
     if args.smoke_test:
         args.epochs = 1
@@ -173,7 +195,6 @@ def run(args: argparse.Namespace) -> dict:
     train_examples = load_pair_examples(args.train_file, len(label_names), args.max_train_pairs)
     valid_examples = load_pair_examples(args.valid_file, len(label_names), args.max_valid_pairs)
     test_examples = load_pair_examples(args.test_file, len(label_names), args.max_test_pairs)
-    pos_weight = compute_pos_weight(train_examples, allow_missing=args.smoke_test)
     tokenizer = AutoTokenizer.from_pretrained(args.model_dir, local_files_only=True)
     collator = RouterCollator(tokenizer, args.max_length)
     generator = torch.Generator().manual_seed(args.seed)
@@ -209,11 +230,21 @@ def run(args: argparse.Namespace) -> dict:
         num_warmup_steps=int(total_updates * args.warmup_ratio),
         num_training_steps=total_updates,
     )
-    loss_fn = nn.BCEWithLogitsLoss(pos_weight=pos_weight.to(device))
+    loss_fn, objective_metadata = build_training_loss(
+        args.loss,
+        train_examples,
+        device,
+        class_weight_mode=args.class_weight_mode,
+        label_smoothing=args.label_smoothing,
+        focal_gamma=args.focal_gamma,
+        allow_missing=args.smoke_test,
+    )
 
     history = []
     best_recall = -1.0
     best_state = None
+    best_epoch = None
+    epochs_without_improvement = 0
     optimizer.zero_grad(set_to_none=True)
     for epoch in range(1, args.epochs + 1):
         model.train()
@@ -228,7 +259,7 @@ def run(args: argparse.Namespace) -> dict:
             labels = batch["labels"].to(device)
             with torch.autocast(device_type=device.type, dtype=mixed_dtype, enabled=mixed_dtype is not None):
                 logits = model(**model_batch(batch, device))
-                loss = loss_fn(logits, labels) / args.gradient_accumulation_steps
+                loss = objective_loss(args.loss, loss_fn, logits, labels) / args.gradient_accumulation_steps
             scaler.scale(loss).backward()
             train_losses.append(float(loss.item() * args.gradient_accumulation_steps))
             train_batches.set_postfix(
@@ -251,6 +282,7 @@ def run(args: argparse.Namespace) -> dict:
             label_names,
             device,
             mixed_dtype,
+            objective=args.loss,
             description=f"Valid {epoch}/{args.epochs}",
             show_progress=args.progress,
         )
@@ -264,8 +296,23 @@ def run(args: argparse.Namespace) -> dict:
         score = float(valid_metrics["recall@3"])
         if score > best_recall:
             best_recall = score
+            best_epoch = epoch
+            epochs_without_improvement = 0
             best_state = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+        else:
+            epochs_without_improvement += 1
         print(json.dumps(epoch_result, ensure_ascii=False))
+        if (
+            args.early_stopping_patience > 0
+            and epochs_without_improvement >= args.early_stopping_patience
+        ):
+            print(json.dumps({
+                "early_stopping": True,
+                "best_epoch": best_epoch,
+                "best_valid_recall@3": best_recall,
+                "patience": args.early_stopping_patience,
+            }, ensure_ascii=False))
+            break
 
     if best_state is None:
         raise RuntimeError("Training did not produce a checkpoint")
@@ -278,6 +325,7 @@ def run(args: argparse.Namespace) -> dict:
         label_names,
         device,
         mixed_dtype,
+        objective=args.loss,
         description="Test",
         show_progress=args.progress,
     )
@@ -294,7 +342,7 @@ def run(args: argparse.Namespace) -> dict:
         })
 
     summary = {
-        "baseline": "codebert_weighted_bce",
+        "baseline": f"codebert_{args.loss}",
         "training_config": serializable_config(args),
         "device": str(device),
         "model_dir": str(args.model_dir.resolve()),
@@ -302,7 +350,8 @@ def run(args: argparse.Namespace) -> dict:
         "train_pairs": len(train_examples) // 2,
         "valid_pairs": len(valid_examples) // 2,
         "test_pairs": len(test_examples) // 2,
-        "pos_weight": pos_weight.tolist(),
+        "objective": objective_metadata,
+        "best_epoch": best_epoch,
         "history": history,
         "best_valid_recall@3": best_recall,
         "test_loss": test_loss,
@@ -321,6 +370,7 @@ def run(args: argparse.Namespace) -> dict:
                 label_names,
                 device,
                 mixed_dtype,
+                objective=args.loss,
                 description="Reload check",
                 show_progress=args.progress,
             )
@@ -330,7 +380,11 @@ def run(args: argparse.Namespace) -> dict:
                 "valid_recall@3": reload_metrics["recall@3"],
             }
     else:
-        model.save_checkpoint(args.output_dir, {"best_valid_recall@3": best_recall})
+        model.save_checkpoint(args.output_dir, {
+            "best_valid_recall@3": best_recall,
+            "best_epoch": best_epoch,
+            **objective_metadata,
+        })
 
     save_json(args.output_dir / "run_summary.json", summary)
     save_json(args.output_dir / "test_predictions.json", predictions)
