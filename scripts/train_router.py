@@ -270,9 +270,13 @@ def run(args: argparse.Namespace) -> dict:
             if step % args.gradient_accumulation_steps == 0 or step == len(train_loader):
                 scaler.unscale_(optimizer)
                 torch.nn.utils.clip_grad_norm_(parameters, max_norm=1.0)
+                scale_before_step = scaler.get_scale()
                 scaler.step(optimizer)
                 scaler.update()
-                scheduler.step()
+                # GradScaler skips optimizer.step() when FP16 gradients
+                # overflow. Keep the LR schedule aligned with real updates.
+                if scaler.get_scale() >= scale_before_step:
+                    scheduler.step()
                 optimizer.zero_grad(set_to_none=True)
 
         valid_loss, valid_metrics, _ = evaluate(
