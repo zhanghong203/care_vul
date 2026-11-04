@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "coarse vulnerability mechanism candidate routing",
+  "model_input_fields": [
+    "vulnerable.func",
+    "fixed.func"
+  ],
+  "supervision_fields": [
+    "vulnerable.family_label_vector",
+    "fixed.family_label_vector",
+    "shared_family_labels",
+    "pair_consistency_eligible"
+  ],
+  "forbidden_model_input_fields": [
+    "binary_target",
+    "leaf_cwes",
+    "project",
+    "commit_id",
+    "cve",
+    "func_hash",
+    "source_line"
+  ],
+  "families": [
+    "memory",
+    "injection",
+    "input",
+    "numeric",
+    "resource",
+    "concurrency",
+    "access",
+    "crypto",
+    "information",
+    "logic"
+  ],
+  "source_files": {
+    "train": {
+      "path": "D:\\codex\\codex\\workspace\\MulVul\\care_vul\\third_party\\VulTriage\\data\\PRIMEVUL\\primevul_train_paired.jsonl",
+      "sha256": "1b2853c09ac10b5b60d8e995cbf4461b65414dcf90e0cc5086b788caeae1aaaa"
+    },
+    "valid": {
+      "path": "D:\\codex\\codex\\workspace\\MulVul\\care_vul\\third_party\\VulTriage\\data\\PRIMEVUL\\primevul_valid_paired.jsonl",
+      "sha256": "14516b7168e8d158e1e9fbeb163b655dd704eafd82c734e86cddc84c564b4285"
+    },
+    "test": {
+      "path": "D:\\codex\\codex\\workspace\\MulVul\\care_vul\\third_party\\VulTriage\\data\\PRIMEVUL\\primevul_test_paired.jsonl",
+      "sha256": "384758c25142b640f1768bb0d334c43f315c580022ae94973c66e77128fb3821"
+    }
+  },
+  "mapping_sha256": "25da0ebdc2143d615679ecaae0e8b271b63c27395240b9527dc289c6c349e31a",
+  "audit_summary_sha256": "10bbdfc4ee4743bbc7e0d478349f81df22fb3658249cfb0586cf69200eafce67",
+  "protocols": {
+    "official": "Official PrimeVul row order retained; invalid pairs are flagged and excluded from pair loss.",
+    "code_clean": "Train/valid pairs with audit anomalies or cross-split lexical near-duplicates are removed atomically; test remains unchanged and flagged."
+  }
+}

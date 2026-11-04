@@ -1,0 +1,12 @@
+{
+  "memory": 0,
+  "injection": 1,
+  "input": 2,
+  "numeric": 3,
+  "resource": 4,
+  "concurrency": 5,
+  "access": 6,
+  "crypto": 7,
+  "information": 8,
+  "logic": 9
+}

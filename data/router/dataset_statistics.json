@@ -1,0 +1,127 @@
+{
+  "official": {
+    "train": {
+      "pairs": 3789,
+      "functions": 7578,
+      "pair_consistency_eligible": 3772,
+      "pair_consistency_ineligible": 17,
+      "family_label_counts": {
+        "memory": 3346,
+        "injection": 266,
+        "input": 723,
+        "numeric": 668,
+        "resource": 839,
+        "concurrency": 132,
+        "access": 552,
+        "crypto": 161,
+        "information": 438,
+        "logic": 452
+      },
+      "unmapped_cwes": {
+        "NVD-CWE-Other": 1
+      }
+    },
+    "valid": {
+      "pairs": 480,
+      "functions": 960,
+      "pair_consistency_eligible": 480,
+      "pair_consistency_ineligible": 0,
+      "family_label_counts": {
+        "memory": 494,
+        "injection": 34,
+        "input": 24,
+        "numeric": 120,
+        "resource": 80,
+        "concurrency": 18,
+        "access": 34,
+        "crypto": 20,
+        "information": 32,
+        "logic": 104
+      },
+      "unmapped_cwes": {}
+    },
+    "test": {
+      "pairs": 435,
+      "functions": 870,
+      "pair_consistency_eligible": 433,
+      "pair_consistency_ineligible": 2,
+      "family_label_counts": {
+        "memory": 454,
+        "injection": 30,
+        "input": 28,
+        "numeric": 70,
+        "resource": 52,
+        "concurrency": 16,
+        "access": 41,
+        "crypto": 10,
+        "information": 36,
+        "logic": 133
+      },
+      "unmapped_cwes": {}
+    }
+  },
+  "code_clean": {
+    "train": {
+      "pairs": 3717,
+      "functions": 7434,
+      "pair_consistency_eligible": 3717,
+      "pair_consistency_ineligible": 0,
+      "family_label_counts": {
+        "memory": 3268,
+        "injection": 262,
+        "input": 722,
+        "numeric": 658,
+        "resource": 812,
+        "concurrency": 132,
+        "access": 550,
+        "crypto": 160,
+        "information": 430,
+        "logic": 440
+      },
+      "unmapped_cwes": {}
+    },
+    "valid": {
+      "pairs": 476,
+      "functions": 952,
+      "pair_consistency_eligible": 476,
+      "pair_consistency_ineligible": 0,
+      "family_label_counts": {
+        "memory": 492,
+        "injection": 32,
+        "input": 24,
+        "numeric": 118,
+        "resource": 78,
+        "concurrency": 18,
+        "access": 34,
+        "crypto": 20,
+        "information": 32,
+        "logic": 104
+      },
+      "unmapped_cwes": {}
+    },
+    "test": {
+      "pairs": 435,
+      "functions": 870,
+      "pair_consistency_eligible": 433,
+      "pair_consistency_ineligible": 2,
+      "family_label_counts": {
+        "memory": 454,
+        "injection": 30,
+        "input": 28,
+        "numeric": 70,
+        "resource": 52,
+        "concurrency": 16,
+        "access": 41,
+        "crypto": 10,
+        "information": 36,
+        "logic": 133
+      },
+      "unmapped_cwes": {}
+    }
+  },
+  "excluded_pairs": 76,
+  "excluded_by_split": {
+    "train": 72,
+    "valid": 4
+  }
+}

@@ -1,0 +1,1492 @@
+{
+  "schema_version": 1,
+  "source_mapping": "D:\\codex\\codex\\workspace\\MulVul\\config\\cwe_coarse_mapping.json",
+  "source_mapping_sha256": "11ad028fcf6db54533495f165b3fe5243b67833fd53480e8aa3ff60eae8dc098",
+  "families": [
+    "memory",
+    "injection",
+    "input",
+    "numeric",
+    "resource",
+    "concurrency",
+    "access",
+    "crypto",
+    "information",
+    "logic"
+  ],
+  "benign_is_router_family": false,
+  "unknown_policy": "Keep in official data with empty family labels; exclude from code-clean training pairs.",
+  "mapping": {
+    "CWE-16": {
+      "cwe": "CWE-16",
+      "name": "Configuration",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-16",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-17": {
+      "cwe": "CWE-17",
+      "name": "DEPRECATED: Code",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-17",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 14
+    },
+    "CWE-19": {
+      "cwe": "CWE-19",
+      "name": "Data Processing Errors",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-19",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 8
+    },
+    "CWE-20": {
+      "cwe": "CWE-20",
+      "name": "Improper Input Validation",
+      "category": "input",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-20",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 363
+    },
+    "CWE-22": {
+      "cwe": "CWE-22",
+      "name": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-22",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 36
+    },
+    "CWE-59": {
+      "cwe": "CWE-59",
+      "name": "Improper Link Resolution Before File Access ('Link Following')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-59",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 17
+    },
+    "CWE-61": {
+      "cwe": "CWE-61",
+      "name": "UNIX Symbolic Link (Symlink) Following",
+      "category": "injection",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-59",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-74": {
+      "cwe": "CWE-74",
+      "name": "Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-74",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-77": {
+      "cwe": "CWE-77",
+      "name": "Improper Neutralization of Special Elements used in a Command ('Command Injection')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-77",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-78": {
+      "cwe": "CWE-78",
+      "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-78",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 23
+    },
+    "CWE-79": {
+      "cwe": "CWE-79",
+      "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-79",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 18
+    },
+    "CWE-89": {
+      "cwe": "CWE-89",
+      "name": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-89",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 4
+    },
+    "CWE-93": {
+      "cwe": "CWE-93",
+      "name": "Improper Neutralization of CRLF Sequences ('CRLF Injection')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-93",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-94": {
+      "cwe": "CWE-94",
+      "name": "Improper Control of Generation of Code ('Code Injection')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-94",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 15
+    },
+    "CWE-116": {
+      "cwe": "CWE-116",
+      "name": "Improper Encoding or Escaping of Output",
+      "category": "injection",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-707",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-119": {
+      "cwe": "CWE-119",
+      "name": "Improper Restriction of Operations within the Bounds of a Memory Buffer",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-119",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 536
+    },
+    "CWE-120": {
+      "cwe": "CWE-120",
+      "name": "Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-120",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 42
+    },
+    "CWE-121": {
+      "cwe": "CWE-121",
+      "name": "Stack-based Buffer Overflow",
+      "category": "memory",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-787",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-122": {
+      "cwe": "CWE-122",
+      "name": "Heap-based Buffer Overflow",
+      "category": "memory",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-787",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-125": {
+      "cwe": "CWE-125",
+      "name": "Out-of-bounds Read",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-125",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 441
+    },
+    "CWE-129": {
+      "cwe": "CWE-129",
+      "name": "Improper Validation of Array Index",
+      "category": "input",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-129",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-131": {
+      "cwe": "CWE-131",
+      "name": "Incorrect Calculation of Buffer Size",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-682",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-134": {
+      "cwe": "CWE-134",
+      "name": "Use of Externally-Controlled Format String",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-134",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-172": {
+      "cwe": "CWE-172",
+      "name": "Encoding Error",
+      "category": "input",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-189": {
+      "cwe": "CWE-189",
+      "name": "Numeric Errors",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-189",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 128
+    },
+    "CWE-190": {
+      "cwe": "CWE-190",
+      "name": "Integer Overflow or Wraparound",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-190",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 150
+    },
+    "CWE-191": {
+      "cwe": "CWE-191",
+      "name": "Integer Underflow (Wrap or Wraparound)",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-191",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 4
+    },
+    "CWE-193": {
+      "cwe": "CWE-193",
+      "name": "Off-by-one Error",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-193",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-200": {
+      "cwe": "CWE-200",
+      "name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "category": "information",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-200",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 226
+    },
+    "CWE-203": {
+      "cwe": "CWE-203",
+      "name": "Observable Discrepancy",
+      "category": "information",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-203",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-209": {
+      "cwe": "CWE-209",
+      "name": "Generation of Error Message Containing Sensitive Information",
+      "category": "information",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-209",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-212": {
+      "cwe": "CWE-212",
+      "name": "Improper Removal of Sensitive Information Before Storage or Transfer",
+      "category": "information",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-212",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-241": {
+      "cwe": "CWE-241",
+      "name": "Improper Handling of Unexpected Data Type",
+      "category": "input",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 4
+    },
+    "CWE-252": {
+      "cwe": "CWE-252",
+      "name": "Unchecked Return Value",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-252",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 7
+    },
+    "CWE-254": {
+      "cwe": "CWE-254",
+      "name": "7PK - Security Features",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-254",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 15
+    },
+    "CWE-255": {
+      "cwe": "CWE-255",
+      "name": "Credentials Management Errors",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-255",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-264": {
+      "cwe": "CWE-264",
+      "name": "Permissions, Privileges, and Access Controls",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-264",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 142
+    },
+    "CWE-269": {
+      "cwe": "CWE-269",
+      "name": "Improper Privilege Management",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-269",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 21
+    },
+    "CWE-273": {
+      "cwe": "CWE-273",
+      "name": "Improper Check for Dropped Privileges",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-273",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-275": {
+      "cwe": "CWE-275",
+      "name": "Permission Issues",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-275",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-276": {
+      "cwe": "CWE-276",
+      "name": "Incorrect Default Permissions",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-276",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-281": {
+      "cwe": "CWE-281",
+      "name": "Improper Preservation of Permissions",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-281",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-284": {
+      "cwe": "CWE-284",
+      "name": "Improper Access Control",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-284",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 54
+    },
+    "CWE-285": {
+      "cwe": "CWE-285",
+      "name": "Improper Authorization",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-285",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 4
+    },
+    "CWE-287": {
+      "cwe": "CWE-287",
+      "name": "Improper Authentication",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-287",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 14
+    },
+    "CWE-288": {
+      "cwe": "CWE-288",
+      "name": "Authentication Bypass Using an Alternate Path or Channel",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-288",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-290": {
+      "cwe": "CWE-290",
+      "name": "Authentication Bypass by Spoofing",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-290",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-294": {
+      "cwe": "CWE-294",
+      "name": "Authentication Bypass by Capture-replay",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-294",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-295": {
+      "cwe": "CWE-295",
+      "name": "Improper Certificate Validation",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 7
+    },
+    "CWE-307": {
+      "cwe": "CWE-307",
+      "name": "Improper Restriction of Excessive Authentication Attempts",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-307",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-310": {
+      "cwe": "CWE-310",
+      "name": "Cryptographic Issues",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-310",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 54
+    },
+    "CWE-311": {
+      "cwe": "CWE-311",
+      "name": "Missing Encryption of Sensitive Data",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-311",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-320": {
+      "cwe": "CWE-320",
+      "name": "Key Management Errors",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-320",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 8
+    },
+    "CWE-326": {
+      "cwe": "CWE-326",
+      "name": "Inadequate Encryption Strength",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-326",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 3
+    },
+    "CWE-327": {
+      "cwe": "CWE-327",
+      "name": "Use of a Broken or Risky Cryptographic Algorithm",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-327",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 4
+    },
+    "CWE-331": {
+      "cwe": "CWE-331",
+      "name": "Insufficient Entropy",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-331",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-345": {
+      "cwe": "CWE-345",
+      "name": "Insufficient Verification of Data Authenticity",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-346": {
+      "cwe": "CWE-346",
+      "name": "Origin Validation Error",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-347": {
+      "cwe": "CWE-347",
+      "name": "Improper Verification of Cryptographic Signature",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-347",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-352": {
+      "cwe": "CWE-352",
+      "name": "Cross-Site Request Forgery (CSRF)",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-354": {
+      "cwe": "CWE-354",
+      "name": "Improper Validation of Integrity Check Value",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-354",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-361": {
+      "cwe": "CWE-361",
+      "name": "7PK - Time and State",
+      "category": "concurrency",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-361",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-362": {
+      "cwe": "CWE-362",
+      "name": "Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition')",
+      "category": "concurrency",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-362",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 72
+    },
+    "CWE-369": {
+      "cwe": "CWE-369",
+      "name": "Divide By Zero",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-369",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 72
+    },
+    "CWE-388": {
+      "cwe": "CWE-388",
+      "name": "7PK - Errors",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-388",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 7
+    },
+    "CWE-399": {
+      "cwe": "CWE-399",
+      "name": "Resource Management Errors",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-399",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 151
+    },
+    "CWE-400": {
+      "cwe": "CWE-400",
+      "name": "Uncontrolled Resource Consumption",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-400",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 28
+    },
+    "CWE-401": {
+      "cwe": "CWE-401",
+      "name": "Missing Release of Memory after Effective Lifetime",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-401",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 87
+    },
+    "CWE-404": {
+      "cwe": "CWE-404",
+      "name": "Improper Resource Shutdown or Release",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-404",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-415": {
+      "cwe": "CWE-415",
+      "name": "Double Free",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-415",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 59
+    },
+    "CWE-416": {
+      "cwe": "CWE-416",
+      "name": "Use After Free",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-416",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 206
+    },
+    "CWE-417": {
+      "cwe": "CWE-417",
+      "name": "Communication Channel Errors",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-417",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-434": {
+      "cwe": "CWE-434",
+      "name": "Unrestricted Upload of File with Dangerous Type",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-434",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-444": {
+      "cwe": "CWE-444",
+      "name": "Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')",
+      "category": "injection",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-476": {
+      "cwe": "CWE-476",
+      "name": "NULL Pointer Dereference",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-476",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 257
+    },
+    "CWE-502": {
+      "cwe": "CWE-502",
+      "name": "Deserialization of Untrusted Data",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-502",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-522": {
+      "cwe": "CWE-522",
+      "name": "Insufficiently Protected Credentials",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 3
+    },
+    "CWE-532": {
+      "cwe": "CWE-532",
+      "name": "Insertion of Sensitive Information into Log File",
+      "category": "information",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-532",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-552": {
+      "cwe": "CWE-552",
+      "name": "Files or Directories Accessible to External Parties",
+      "category": "information",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-552",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-601": {
+      "cwe": "CWE-601",
+      "name": "URL Redirection to Untrusted Site ('Open Redirect')",
+      "category": "input",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 3
+    },
+    "CWE-613": {
+      "cwe": "CWE-613",
+      "name": "Insufficient Session Expiration",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-617": {
+      "cwe": "CWE-617",
+      "name": "Reachable Assertion",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-617",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 41
+    },
+    "CWE-639": {
+      "cwe": "CWE-639",
+      "name": "Authorization Bypass Through User-Controlled Key",
+      "category": "access",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-863",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-664": {
+      "cwe": "CWE-664",
+      "name": "Improper Control of a Resource Through its Lifetime",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-664",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-665": {
+      "cwe": "CWE-665",
+      "name": "Improper Initialization",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-665",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 11
+    },
+    "CWE-667": {
+      "cwe": "CWE-667",
+      "name": "Improper Locking",
+      "category": "concurrency",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-667",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-668": {
+      "cwe": "CWE-668",
+      "name": "Exposure of Resource to Wrong Sphere",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-670": {
+      "cwe": "CWE-670",
+      "name": "Always-Incorrect Control Flow Implementation",
+      "category": "logic",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-672": {
+      "cwe": "CWE-672",
+      "name": "Operation on a Resource after Expiration or Release",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-672",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-674": {
+      "cwe": "CWE-674",
+      "name": "Uncontrolled Recursion",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-674",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 7
+    },
+    "CWE-681": {
+      "cwe": "CWE-681",
+      "name": "Incorrect Conversion between Numeric Types",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-681",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-682": {
+      "cwe": "CWE-682",
+      "name": "Incorrect Calculation",
+      "category": "numeric",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-682",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 3
+    },
+    "CWE-697": {
+      "cwe": "CWE-697",
+      "name": "Incorrect Comparison",
+      "category": "logic",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 3
+    },
+    "CWE-703": {
+      "cwe": "CWE-703",
+      "name": "Improper Check or Handling of Exceptional Conditions",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-703",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 175
+    },
+    "CWE-704": {
+      "cwe": "CWE-704",
+      "name": "Incorrect Type Conversion or Cast",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-704",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 11
+    },
+    "CWE-707": {
+      "cwe": "CWE-707",
+      "name": "Improper Neutralization",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-707",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-732": {
+      "cwe": "CWE-732",
+      "name": "Incorrect Permission Assignment for Critical Resource",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-732",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 3
+    },
+    "CWE-754": {
+      "cwe": "CWE-754",
+      "name": "Improper Check for Unusual or Exceptional Conditions",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-754",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 12
+    },
+    "CWE-755": {
+      "cwe": "CWE-755",
+      "name": "Improper Handling of Exceptional Conditions",
+      "category": "logic",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-755",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-763": {
+      "cwe": "CWE-763",
+      "name": "Release of Invalid Pointer or Reference",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-763",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-770": {
+      "cwe": "CWE-770",
+      "name": "Allocation of Resources Without Limits or Throttling",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-770",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 14
+    },
+    "CWE-772": {
+      "cwe": "CWE-772",
+      "name": "Missing Release of Resource after Effective Lifetime",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-772",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 73
+    },
+    "CWE-787": {
+      "cwe": "CWE-787",
+      "name": "Out-of-bounds Write",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-787",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 330
+    },
+    "CWE-798": {
+      "cwe": "CWE-798",
+      "name": "Use of Hard-coded Credentials",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-824": {
+      "cwe": "CWE-824",
+      "name": "Access of Uninitialized Pointer",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-824",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 7
+    },
+    "CWE-834": {
+      "cwe": "CWE-834",
+      "name": "Excessive Iteration",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-834",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 12
+    },
+    "CWE-835": {
+      "cwe": "CWE-835",
+      "name": "Loop with Unreachable Exit Condition ('Infinite Loop')",
+      "category": "resource",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-835",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 49
+    },
+    "CWE-843": {
+      "cwe": "CWE-843",
+      "name": "Access of Resource Using Incompatible Type ('Type Confusion')",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-843",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 8
+    },
+    "CWE-862": {
+      "cwe": "CWE-862",
+      "name": "Missing Authorization",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-862",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-863": {
+      "cwe": "CWE-863",
+      "name": "Incorrect Authorization",
+      "category": "access",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-863",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 4
+    },
+    "CWE-908": {
+      "cwe": "CWE-908",
+      "name": "Use of Uninitialized Resource",
+      "category": "memory",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-908",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 5
+    },
+    "CWE-909": {
+      "cwe": "CWE-909",
+      "name": "Missing Initialization of Resource",
+      "category": "resource",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 6
+    },
+    "CWE-918": {
+      "cwe": "CWE-918",
+      "name": "Server-Side Request Forgery (SSRF)",
+      "category": "injection",
+      "confidence": "high",
+      "method": "exact-root",
+      "evidence": [
+        "CWE-918",
+        "ancestor-distance=0"
+      ],
+      "dataset_count": 2
+    },
+    "CWE-924": {
+      "cwe": "CWE-924",
+      "name": "Improper Enforcement of Message Integrity During Transmission in a Communication Channel",
+      "category": "crypto",
+      "confidence": "high",
+      "method": "ancestor",
+      "evidence": [
+        "CWE-345",
+        "ancestor-distance=1"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-1021": {
+      "cwe": "CWE-1021",
+      "name": "Improper Restriction of Rendered UI Layers or Frames",
+      "category": "access",
+      "confidence": "high",
+      "method": "explicit-override",
+      "evidence": [
+        "cross-cutting-CWE-reviewed"
+      ],
+      "dataset_count": 1
+    },
+    "CWE-459": {
+      "cwe": "CWE-459",
+      "name": "Incomplete Cleanup",
+      "category": "resource",
+      "confidence": "high",
+      "method": "documented-extension",
+      "evidence": [
+        "cleanup/release lifecycle mechanism"
+      ]
+    },
+    "CWE-565": {
+      "cwe": "CWE-565",
+      "name": "Reliance on Cookies without Validation and Integrity Checking",
+      "category": "input",
+      "confidence": "medium",
+      "method": "documented-extension",
+      "evidence": [
+        "untrusted cookie validation mechanism"
+      ]
+    },
+    "CWE-611": {
+      "cwe": "CWE-611",
+      "name": "Improper Restriction of XML External Entity Reference",
+      "category": "injection",
+      "confidence": "high",
+      "method": "documented-extension",
+      "evidence": [
+        "untrusted XML changes interpreted external entity structure"
+      ]
+    },
+    "CWE-662": {
+      "cwe": "CWE-662",
+      "name": "Improper Synchronization",
+      "category": "concurrency",
+      "confidence": "high",
+      "method": "documented-extension",
+      "evidence": [
+        "synchronization and shared-state mechanism"
+      ]
+    },
+    "CWE-706": {
+      "cwe": "CWE-706",
+      "name": "Use of Incorrectly-Resolved Name or Reference",
+      "category": "logic",
+      "confidence": "medium",
+      "method": "documented-extension",
+      "evidence": [
+        "security-relevant name/reference resolution logic"
+      ]
+    }
+  },
+  "documented_additions": {
+    "CWE-459": {
+      "cwe": "CWE-459",
+      "name": "Incomplete Cleanup",
+      "category": "resource",
+      "confidence": "high",
+      "method": "documented-extension",
+      "evidence": [
+        "cleanup/release lifecycle mechanism"
+      ]
+    },
+    "CWE-565": {
+      "cwe": "CWE-565",
+      "name": "Reliance on Cookies without Validation and Integrity Checking",
+      "category": "input",
+      "confidence": "medium",
+      "method": "documented-extension",
+      "evidence": [
+        "untrusted cookie validation mechanism"
+      ]
+    },
+    "CWE-611": {
+      "cwe": "CWE-611",
+      "name": "Improper Restriction of XML External Entity Reference",
+      "category": "injection",
+      "confidence": "high",
+      "method": "documented-extension",
+      "evidence": [
+        "untrusted XML changes interpreted external entity structure"
+      ]
+    },
+    "CWE-662": {
+      "cwe": "CWE-662",
+      "name": "Improper Synchronization",
+      "category": "concurrency",
+      "confidence": "high",
+      "method": "documented-extension",
+      "evidence": [
+        "synchronization and shared-state mechanism"
+      ]
+    },
+    "CWE-706": {
+      "cwe": "CWE-706",
+      "name": "Use of Incorrectly-Resolved Name or Reference",
+      "category": "logic",
+      "confidence": "medium",
+      "method": "documented-extension",
+      "evidence": [
+        "security-relevant name/reference resolution logic"
+      ]
+    }
+  },
+  "limitations": [
+    "The source mapping is an independent reconstruction, not MulVul's unpublished official table.",
+    "The source mapping was originally generated over observed PrimeVul train/test CWE identifiers.",
+    "Medium-confidence cross-cutting assignments require an ablation or sensitivity analysis."
+  ]
+}

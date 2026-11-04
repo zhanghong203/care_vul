@@ -1,0 +1,6 @@
+{
+  "candidates": [
+    {"cwe": "CWE-416", "score": 0.72},
+    {"cwe": "CWE-120", "score": 0.21}
+  ]
+}

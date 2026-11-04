@@ -1,0 +1,13 @@
+name: care-vul
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pycparser>=2.22
+  - pyyaml>=6.0
+  - pytest>=8.0
+  - pip:
+      - openai>=1.40
+      - pcpp>=1.30
+

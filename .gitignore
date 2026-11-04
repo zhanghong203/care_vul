@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.pytest-tmp*/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments and local configuration
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# IDE and OS metadata
+.idea/
+.vscode/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Generated outputs and packages
+outputs/
+dist/
+build/
+deploy/
+*.zip
+*.tar
+*.tar.gz
+example_result.json
+examples/fused_result.json
+2.22
+
+# Model weights and caches
+models/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.onnx_data
+.cache/
+
+# External repositories and resources are prepared separately.
+third_party/
+
+# Derived PrimeVul/router samples are not redistributed.
+data/router/**/*.jsonl
+

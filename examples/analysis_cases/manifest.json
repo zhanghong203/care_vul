@@ -1,0 +1,12 @@
+[
+  {"method": "sensitive_call", "file": "01_sensitive_call.c", "focus": "识别 system 为命令执行敏感调用"},
+  {"method": "call_roles", "file": "02_call_roles.c", "focus": "识别 memcpy 的 destination/source/length 参数角色"},
+  {"method": "backward_slice", "file": "03_backward_slice.c", "focus": "从 memcpy 的长度参数反向追踪到函数参数 len"},
+  {"method": "dominance", "file": "04_dominance.c", "focus": "检查边界分支是否支配 memcpy"},
+  {"method": "control_dependency", "file": "05_control_dependency.c", "focus": "检查 system 是否受 enabled 分支控制"},
+  {"method": "buffer_capacity", "file": "06_buffer_capacity.c", "focus": "提取局部数组 dst 的固定容量 32"},
+  {"method": "path_constraint", "file": "07_path_constraint.c", "focus": "提取到达 memcpy 时成立的长度约束"},
+  {"method": "bounds_property", "file": "08_bounds_property.c", "focus": "判断复制长度是否被目标缓冲区容量约束"},
+  {"method": "lifetime_events", "file": "09_lifetime_events.c", "focus": "提取 malloc/free 生命周期事件"},
+  {"method": "path_order", "file": "10_path_order.c", "focus": "检查同一对象上的分配与重复释放顺序"}
+]

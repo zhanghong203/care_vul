@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "care-vul"
+version = "0.1.0"
+description = "Router-guided adaptive program analysis for vulnerability reasoning"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0", "openai>=1.40", "pycparser>=2.22", "pcpp>=1.30"]
+
+[project.optional-dependencies]
+router = ["torch>=2.6", "transformers>=5.3,<6", "numpy>=1.26", "tqdm>=4.66"]
+
+[project.scripts]
+care-vul = "carevul.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
